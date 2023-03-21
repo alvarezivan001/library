@@ -27,7 +27,9 @@ function addBookToLibrary(book) {
     myLibrary.push(book);
 }
 
-
+function displayLibrary(){
+    
+}
   // const variable = 'property'
   // console.log(myObject.variable);
   // console.log(myObject[variable]);

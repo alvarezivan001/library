@@ -39,7 +39,8 @@ div {
 }
 .body {
     display: flex;
-    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 th {
     padding: 0 75px 0 75px;
@@ -47,6 +48,21 @@ th {
 table {
     border-collapse:collapse;
 }
-th {
+.table_container {
+    flex: 4;
+}
+.input_book {
+    flex: 1;
+    text-align: center;
+}
+input {
+    margin-right: 30px;
+}
+th, tr {
     border-bottom: 2px black solid;
+    
+}
+td {
+
+    text-align: center;
 }

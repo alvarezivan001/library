@@ -15,20 +15,39 @@
         
     </div>
     <div class="body">
-        <table>
-            <thead>
-                <tr id="header_row">
-                    <th id="name">Name</th>
-                    <th id="author">Author</th>
-                    <th id="pages">Pages</th>
-                    <th id="read">Status</th>
-                    <th id="remove"></th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-        <div class="input_book"></div>
+        <div class="table_container">
+            <table>
+                <thead>
+                    <tr id="header_row">
+                        <th id="name">Name</th>
+                        <th id="author">Author</th>
+                        <th id="pages">Pages</th>
+                        <th id="read">Status</th>
+                        <th id="remove"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>
+        </div>
+        <div class="input_book">Add a Book
+            <form>
+                <label for="book_name">Name</label>
+                <input type="text" id="book_name" name="book_name">
+                
+                <label for="author_name">Author</label>
+                <input type="text" id="author_name" name="author_name">
+                
+                <label for="pages_amount">Pages</label>
+                <input type="number" id="pages_amount" name="pages_amount">
+
+                <label for="read_status">Unread?</label>
+                <input type="checkbox" id="read_status" name="read_status">
+
+                <button type="button">Add</button>
+            </form>
+        </div>
     </div>
     <div class="footer">@alvarezivan001</div>
     <script src="script.js"></script>

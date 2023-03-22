@@ -12,10 +12,11 @@ function Book(title, author, pages, read){
     else
       {return title + " by " + author + ", " + pages + " pages, not read yet!"}
     }
+
   }
   
   const bookOne = new Book("Hobbit", "Tolkien", 300, true);
-  const bookTwo = new Book("Atlas Shrugged", "Rand", 400, false);
+  const bookTwo = new Book("Atlas", "Rand", 400, false);
   
 addBookToLibrary(bookOne);
 addBookToLibrary(bookTwo);
@@ -23,6 +24,10 @@ addBookToLibrary(bookTwo);
   console.log(bookOne.info());
   console.log(bookTwo.info());
   
+Book.prototype.toggleRead = function() {
+  this.read = !this.read;
+}
+
 function addBookToLibrary(book) {
     myLibrary.push(book);
 }
@@ -37,13 +42,13 @@ function displayLibrary(){
                 if(e[key] == e.title) {tableRow.appendChild(addData(e[key]));}
                 else if(e[key] == e.author) {tableRow.appendChild(addData(e[key]));}
                 else if(e[key] == e.pages) {tableRow.appendChild(addData(e[key]));}
-                else if(e[key] == true) {tableRow.appendChild(addButton('Read'));}
-                else if(e[key] == false) {tableRow.appendChild(addButton('Unread'));}
+                else if(e[key] == true) {tableRow.appendChild(addButton('Read', e.title));}
+                else if(e[key] == false) {tableRow.appendChild(addButton('Unread', e.title));}
                 
                 console.log(key);
             }
 
-            tableRow.appendChild(addButton('Remove'));
+            tableRow.appendChild(addButton('Remove', e.title));
 
             tableBody.appendChild(tableRow);
 
@@ -57,9 +62,10 @@ function addData(data) {
     tableData.textContent = data;
     return tableData;
 }
-function addButton(text) {
+function addButton(text, title) {
   const tableData = document.createElement('td');
   const tableButton = document.createElement('button')
+  tableButton.classList.add(title);
   tableButton.textContent = text;
   tableData.appendChild(tableButton);
   return tableData;
@@ -67,6 +73,41 @@ function addButton(text) {
 }
 
 displayLibrary();
+function addButtonEvents (buttons) {
+
+    buttons.forEach((button) => {
+
+          button.addEventListener('click', () => {
+                
+                // var object = myLibrary.find(e => e.title === button.className);
+                // object.
+                myLibrary.forEach(e => {
+                  if(e.title == button.className)
+                  {
+                    if(e.read == true)
+                    {
+                      button.textContent = "Unread";
+                      e.toggleRead();
+                    }
+                    else
+                    {
+                      if(e.read == false)
+                      {
+                        button.textContent = "Read";
+                        e.toggleRead();
+                      }
+                    }
+                  }
+                });
+                
+          });
+
+    });
+}
+
+var buttons = document.querySelectorAll('button');
+addButtonEvents(buttons);
+
   // const variable = 'property'
   // console.log(myObject.variable);
   // console.log(myObject[variable]);

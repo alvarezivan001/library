@@ -33,7 +33,13 @@ function addBookToLibrary(book) {
 }
 
 function displayLibrary(){
+
         const tableBody = document.querySelector('tbody');
+        while(tableBody.firstChild)
+        {
+            tableBody.firstChild.remove();
+        }
+
         myLibrary.forEach(e => {
             const tableRow = document.createElement('tr');
             
@@ -48,12 +54,13 @@ function displayLibrary(){
                 console.log(key);
             }
 
-            tableRow.appendChild(addButton('Remove', e.title));
+            tableRow.appendChild(addButton('Remove', myLibrary.indexOf(e)));
 
             tableBody.appendChild(tableRow);
 
             
         });
+
 }
 
 function addData(data) {
@@ -79,8 +86,7 @@ function addButtonEvents (buttons) {
 
           button.addEventListener('click', () => {
                 
-                // var object = myLibrary.find(e => e.title === button.className);
-                // object.
+
                 myLibrary.forEach(e => {
                   if(e.title == button.className)
                   {
@@ -97,6 +103,13 @@ function addButtonEvents (buttons) {
                         e.toggleRead();
                       }
                     }
+                  }
+                  else if(myLibrary.indexOf(e) == parseInt(button.className))
+                  {
+                      myLibrary.splice(myLibrary.indexOf(e),1);
+                      displayLibrary();
+                      buttons = document.querySelectorAll('button');
+                      addButtonEvents(buttons);
                   }
                 });
                 

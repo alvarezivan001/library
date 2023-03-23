@@ -111,6 +111,15 @@ function addButtonEvents (buttons) {
                       buttons = document.querySelectorAll('button');
                       addButtonEvents(buttons);
                   }
+                  else if(button.className == 'submit')
+                  {
+                    const newBook = new Book(nameBook.value, nameAuthor.value,parseInt(pagesAmount.value), !readStatus.checked);
+                    addBookToLibrary(newBook);
+                    displayLibrary();
+                    button = null;
+                    // buttons = document.querySelectorAll('button');
+                    // addButtonEvents(buttons);
+                  }
                 });
                 
           });
@@ -120,6 +129,12 @@ function addButtonEvents (buttons) {
 
 var buttons = document.querySelectorAll('button');
 addButtonEvents(buttons);
+
+const nameBook = document.querySelector('#book_name');
+const nameAuthor = document.querySelector('#author_name');
+const pagesAmount = document.querySelector('#pages_amount');
+const readStatus = document.querySelector('#read_status');
+
 
   // const variable = 'property'
   // console.log(myObject.variable);
